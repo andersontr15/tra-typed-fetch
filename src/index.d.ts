@@ -1,21 +1,8 @@
-import { Request, Response } from 'node-fetch';
-declare enum RequestMethod {
-    Get = "GET",
-    Destroy = "DELETE",
-    Patch = "PATCH",
-    Post = "POST"
-}
-interface IResponse extends Partial<Response> {
-    headers: Response['headers'];
-}
-interface IRequest extends Partial<Request> {
-    headers: Request['headers'];
-    payload: Request['body'];
-    requestMethod: RequestMethod;
-    url: Request['url'];
-}
-declare const get: (params: IRequest) => Promise<IResponse>;
-declare const post: (params: IRequest) => Promise<IResponse>;
-declare const patch: (params: IRequest) => Promise<IResponse>;
-declare const destroy: (params: IRequest) => Promise<IResponse>;
-export { get, destroy, patch, post };
+import 'isomorphic-fetch';
+import { IRequestRequired, IRequestRequiredGet, IResponse } from './interfaces';
+declare const get: <T>(params: IRequestRequiredGet) => Promise<IResponse<T>>;
+declare const post: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+declare const patch: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+declare const put: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+declare const destroy: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+export { get, destroy, patch, post, put };

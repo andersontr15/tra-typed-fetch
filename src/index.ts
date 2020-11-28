@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import fetch, { FetchError } from 'node-fetch';
 import { RequestMethod } from './enums';
 import {
