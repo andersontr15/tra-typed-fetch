@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import { IRequestRequired, IRequestRequiredGet, IResponse } from './interfaces';
 declare const get: <T>(params: IRequestRequiredGet) => Promise<IResponse<T>>;
 declare const post: <T>(params: IRequestRequired) => Promise<IResponse<T>>;

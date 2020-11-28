@@ -1,5 +1,4 @@
 import { __assign, __awaiter, __generator } from 'tslib';
-import 'isomorphic-fetch';
 import fetch, { FetchError } from 'node-fetch';
 import { RequestMethod } from './enums';
 import { transformRequest } from './utils';
