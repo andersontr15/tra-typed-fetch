@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017", "es7", "es6", "dom"],
     "declaration": true,
-    "esModuleInterop": true,
-    "lib": ["es2016", "dom", "es2019.array"],
-    "module": "es6",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
     "outDir": "dist",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
-    "target": "ES6"
-  }
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "dist"]
 }
