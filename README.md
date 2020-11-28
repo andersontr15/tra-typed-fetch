@@ -25,7 +25,7 @@ interface Product {
   name: string;
   id: number;
 }
-const response = await get<Product>('/products');
+const response = await get<Product>({ url: '/products' });
 
 // Where data will be the typed value bound to the function in the Response
 const { data, headers, status } = response;
