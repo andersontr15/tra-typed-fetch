@@ -1,8 +1,11 @@
 {
   "name": "tra-typed-fetch",
   "version": "1.0.5",
+  "sideEffects": false,
   "description": "A package that implements common http requests using fetch, allowing for typed responses with typescript",
-  "main": "dist/index.js",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "author": {
     "email": "theoanderson3@gmail.com",
     "url": "http://github.com/andersontr15",
@@ -16,7 +19,6 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "dependencies": {
