@@ -1,4 +1,4 @@
-# tra_typed_fetch
+# tra-typed-fetch
 
 ## Table of Contents
 
