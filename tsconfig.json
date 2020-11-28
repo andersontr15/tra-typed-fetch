@@ -24,5 +24,6 @@
     "stripInternal": true,
     "target": "es5",
     "useDefineForClassFields": true
-  }
+  },
+  "exclude": ["dist/**/*.d.ts"]
 }
