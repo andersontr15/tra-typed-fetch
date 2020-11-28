@@ -4,7 +4,9 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
+- [Installing](#installing)
+- [Usage](#installing)
+
 - [Contributing](../CONTRIBUTING.md)
 
 ## About <a name = "about"></a>
@@ -15,11 +17,13 @@ A package that implements common http requests using fetch, allowing for typed r
 
 To work with this package, you'll need at the bare minimum to create a no_results.csv file and an output.csv file. You will then either need an input.csv file or to pass an option of inputFormat as a string with inputData formatted as seen below. The default option is file.
 
-### Installing
+### Installing <a name = "installing"></a>
 
 `npm install tra-typed-fetch`
 
 `yarn add tra-typed-fetch`
+
+### Usage <a name = "usage"></a>
 
 ```ts
 import { get } from 'tra-typed-fetch';
