@@ -7,8 +7,6 @@
 - [Installing](#installing)
 - [Usage](#installing)
 
-- [Contributing](../CONTRIBUTING.md)
-
 ## About <a name = "about"></a>
 
 A package that implements common http requests using fetch, allowing for typed responses with typescript.
