@@ -1,7 +1,7 @@
 import { Request, Response } from 'node-fetch';
 import { RequestMethod } from './enums';
 
-export interface IResponse<T> extends Partial<Response> {
+export interface IResponse<T> {
   data: T;
   headers: Response['headers'];
   status: Response['status'];
