@@ -1,35 +1,14 @@
-import fetch, { FetchError, Request, Response } from 'node-fetch';
+import fetch, { FetchError } from 'node-fetch';
+import { RequestMethod } from './enums';
+import {
+  IRequest,
+  IRequestRequired,
+  IRequestRequiredGet,
+  IResponse,
+} from './interfaces';
+import { transformRequest } from './utils';
 
-enum RequestMethod {
-  Get = 'GET',
-  Destroy = 'DELETE',
-  Patch = 'PATCH',
-  Post = 'POST',
-}
-
-interface IResponse extends Partial<Response> {
-  headers: Response['headers'];
-}
-
-interface IRequest extends Partial<Request> {
-  headers: Request['headers'];
-  payload: Request['body'];
-  requestMethod: RequestMethod;
-  url: Request['url'];
-}
-
-const transformRequest = (request: IRequest): IRequest => {
-  let transformedRequest = { ...request };
-  if (transformedRequest.requestMethod !== RequestMethod.Get) {
-    Object.defineProperty(transformedRequest, 'body', {
-      value: JSON.stringify(transformedRequest.payload),
-      writable: false,
-    });
-  }
-  return transformedRequest;
-};
-
-const request = async (params: IRequest): Promise<IResponse> => {
+const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
   const request = transformRequest(params);
 
   try {
@@ -44,36 +23,46 @@ const request = async (params: IRequest): Promise<IResponse> => {
 
     const json = await response.json();
 
-    return Promise.resolve(json);
+    const formattedResponse: IResponse<T> = {
+      headers: response.headers,
+      data: json,
+      status: response.status,
+    };
+
+    return Promise.resolve(formattedResponse);
   } catch (error) {
     return Promise.reject(error);
   }
 };
 
-const get = async (params: IRequest) => {
-  return request({
+const get = async <T>(params: IRequestRequiredGet) =>
+  request<T>({
     ...params,
     requestMethod: RequestMethod.Get,
   });
-};
 
-const post = async (params: IRequest) => {
-  return request({
+const post = async <T>(params: IRequestRequired) =>
+  request<T>({
     ...params,
     requestMethod: RequestMethod.Post,
   });
-};
 
-const patch = async (params: IRequest) =>
-  request({
+const patch = async <T>(params: IRequestRequired) =>
+  request<T>({
     ...params,
     requestMethod: RequestMethod.Patch,
   });
 
-const destroy = async (params: IRequest) =>
-  request({
+const put = async <T>(params: IRequestRequired) =>
+  request<T>({
+    ...params,
+    requestMethod: RequestMethod.Put,
+  });
+
+const destroy = async <T>(params: IRequestRequired) =>
+  request<T>({
     ...params,
     requestMethod: RequestMethod.Destroy,
   });
 
-export { get, destroy, patch, post };
+export { get, destroy, patch, post, put };

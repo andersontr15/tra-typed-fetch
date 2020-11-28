@@ -1,5 +1,5 @@
 {
-  "name": "tra_typed_fetch",
+  "name": "tra-typed-fetch",
   "version": "1.0.0",
   "description": "A package that implements common http requests using fetch, allowing for typed responses",
   "main": "src/index.js",
