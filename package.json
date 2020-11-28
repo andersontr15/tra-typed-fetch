@@ -46,6 +46,5 @@
     "node-fetch",
     "typed-fetch",
     "typescript-fetch"
-  ],
-  "type": "module"
+  ]
 }
