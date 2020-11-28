@@ -18,6 +18,7 @@ To work with this package, you'll need at the bare minimum to create a no_result
 ### Installing
 
 `npm install tra-typed-fetch`
+
 `yarn add tra-typed-fetch`
 
 ```ts
