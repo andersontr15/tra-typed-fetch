@@ -8,7 +8,7 @@
 
 ## About <a name = "about"></a>
 
-A package that implements common http requests using fetch, allowing for typed responses with typescript.
+A package that implements common http requests using fetch, allowing for typed responses with TypeScript.
 
 ### Installing <a name = "installing"></a>
 
