@@ -1,0 +1,23 @@
+{
+  "name": "tra_typed_fetch",
+  "version": "1.0.0",
+  "description": "A package that implements common http requests using fetch, allowing for typed responses",
+  "main": "src/index.js",
+  "author": "Theodore Rollin Anderson",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "isomorphic-fetch": "3.0.0",
+    "tslib": "2.0.3"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/node": "14.14.10",
+    "@types/node-fetch": "2.5.7",
+    "typescript": "4.1.2"
+  }
+}
