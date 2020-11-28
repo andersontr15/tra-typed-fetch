@@ -2,11 +2,14 @@
   "name": "tra-typed-fetch",
   "version": "1.0.4",
   "description": "A package that implements common http requests using fetch, allowing for typed responses with typescript",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "author": {
     "email": "theoanderson3@gmail.com",
     "url": "http://github.com/andersontr15",
     "name": "Theodore Anderson"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "prepublish": "tsc -p tsconfig.json",
