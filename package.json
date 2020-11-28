@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "A package that implements common http requests using fetch, allowing for typed responses",
   "main": "src/index.js",
-  "author": "Theodore Rollin Anderson",
+  "author": {
+    "email": "theoanderson3@gmail.com",
+    "url": "http://github.com/andersontr15",
+    "name": "Theodore Anderson"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
@@ -14,10 +18,18 @@
     "isomorphic-fetch": "3.0.0",
     "tslib": "2.0.3"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "devDependencies": {
     "@types/isomorphic-fetch": "0.0.35",
     "@types/node": "14.14.10",
     "@types/node-fetch": "2.5.7",
+    "husky": "4.3.0",
+    "prettier": "2.1.2",
+    "pretty-quick": "3.1.0",
     "typescript": "4.1.2"
   }
 }
