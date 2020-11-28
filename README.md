@@ -3,17 +3,12 @@
 ## Table of Contents
 
 - [About](#about)
-- [Getting Started](#getting_started)
 - [Installing](#installing)
 - [Usage](#installing)
 
 ## About <a name = "about"></a>
 
 A package that implements common http requests using fetch, allowing for typed responses with typescript.
-
-## Getting Started <a name = "getting_started"></a>
-
-To work with this package, you'll need at the bare minimum to create a no_results.csv file and an output.csv file. You will then either need an input.csv file or to pass an option of inputFormat as a string with inputData formatted as seen below. The default option is file.
 
 ### Installing <a name = "installing"></a>
 
