@@ -39,7 +39,7 @@ interface IRequestConfiguration {
   defaultHeaders?: Request['headers'];
 }
 
-const client = createHttpClient({
+const { baseConfiguration, get, destroy, patch, post, put } = createHttpClient({
   baseUrl: 'localhost:3000/api/v1/',
   defaultHeaders: new Headers({ 'content-type': 'application/json' }),
 });
