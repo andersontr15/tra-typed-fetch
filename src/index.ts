@@ -1,4 +1,4 @@
-import fetch, { FetchError } from 'node-fetch';
+import fetch, { FetchError, Headers } from 'node-fetch';
 import { RequestMethod } from './enums';
 import {
   IRequest,
@@ -7,7 +7,7 @@ import {
   IRequestRequiredGet,
   IResponse,
 } from './interfaces';
-import { transformRequest } from './utils';
+import { mergeConfigs, requestMap, transformRequest } from './utils';
 
 const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
   const request = transformRequest(params);
@@ -69,13 +69,29 @@ const destroy = async <T>(params: IRequestRequired) =>
 const createHttpClient = (
   baseConfiguration: Required<IRequestConfiguration>
 ) => {
+  const modifiedRequestWithBaseConfiguration = (
+    requestMethod: RequestMethod
+  ) => {
+    switch (requestMethod) {
+      case RequestMethod.Get:
+        return async <T>(params: IRequestRequiredGet) =>
+          requestMap[requestMethod]<T>(mergeConfigs(baseConfiguration, params));
+      case RequestMethod.Destroy:
+      case RequestMethod.Patch:
+      case RequestMethod.Post:
+      case RequestMethod.Put:
+        return async <T>(params: IRequestRequired) =>
+          requestMap[requestMethod]<T>(mergeConfigs(baseConfiguration, params));
+    }
+  };
+
   return {
     baseConfiguration,
-    destroy,
-    get,
-    patch,
-    post,
-    put,
+    destroy: modifiedRequestWithBaseConfiguration(RequestMethod.Destroy),
+    get: modifiedRequestWithBaseConfiguration(RequestMethod.Get),
+    patch: modifiedRequestWithBaseConfiguration(RequestMethod.Patch),
+    post: modifiedRequestWithBaseConfiguration(RequestMethod.Post),
+    put: modifiedRequestWithBaseConfiguration(RequestMethod.Put),
   };
 };
 

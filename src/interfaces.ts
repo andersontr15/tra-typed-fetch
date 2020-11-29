@@ -15,9 +15,9 @@ export interface IRequest extends Partial<Request> {
   url: Request['url'];
 }
 
-export type IRequestRequired = Pick<IRequest, 'url' | 'payload'>;
+export type IRequestRequired = Pick<IRequest, 'url' | 'payload' | 'headers'>;
 
-export type IRequestRequiredGet = Pick<IRequestRequired, 'url'>;
+export type IRequestRequiredGet = Pick<IRequest, 'url' | 'headers'>;
 
 export interface IRequestConfiguration {
   baseUrl?: string;

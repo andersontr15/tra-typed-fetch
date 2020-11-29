@@ -12,4 +12,4 @@ export interface IRequest extends Partial<Request> {
   url: Request['url'];
 }
 export declare type IRequestRequired = Pick<IRequest, 'url' | 'payload'>;
-export declare type IRequestRequiredGet = Pick<IRequestRequired, 'url'>;
+export declare type IRequestRequiredGet = Pick<IRequest, 'url'>;
