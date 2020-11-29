@@ -8,7 +8,7 @@
 
 ## About <a name = "about"></a>
 
-A package that implements common http requests using fetch, allowing for typed responses with typescript.
+A package that implements common http requests using fetch, allowing for typed responses with TypeScript.
 
 ### Installing <a name = "installing"></a>
 
@@ -25,7 +25,7 @@ interface Product {
   name: string;
   id: number;
 }
-const response = await get<Product>('/products');
+const response = await get<Product>({ url: '/products' });
 
 // Where data will be the typed value bound to the function in the Response
 const { data, headers, status } = response;
