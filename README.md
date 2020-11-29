@@ -30,7 +30,7 @@ const response = await get<Product>({ url: '/products' });
 // Where data will be the typed value bound to the function in the Response
 const { data, headers, status } = response;
 
-// Optional exported method to preset headers and baseUrl
+// Optional exported method to preset headers and baseUrl on each request
 interface IRequestConfiguration {
   baseUrl?: string;
   defaultHeaders?: Request['headers'];
