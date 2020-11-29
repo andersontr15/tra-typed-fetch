@@ -19,7 +19,7 @@ A package that implements common http requests using fetch, allowing for typed r
 ### Usage <a name = "usage"></a>
 
 ```ts
-import {  createHttpClient, get } from 'tra-typed-fetch';
+import { createHttpClient, get } from 'tra-typed-fetch';
 
 interface Product {
   name: string;
@@ -31,6 +31,13 @@ const response = await get<Product>({ url: '/products' });
 const { data, headers, status } = response;
 
 // Optional exported method to preset headers and baseUrl
-const client = createHttpClient({ baseUrl: 'localhost:3000/api/v1/', defaultHeaders: new Headers({ 'content-type': 'application/json' }) }: IRequestConfiguration: { baseUrl: string, defaultHeaders: Headers })
+interface IRequestConfiguration {
+  baseUrl?: string;
+  defaultHeaders?: Request['headers'];
+}
 
+const client = createHttpClient({
+  baseUrl: 'localhost:3000/api/v1/',
+  defaultHeaders: new Headers({ 'content-type': 'application/json' }),
+});
 ```
