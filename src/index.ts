@@ -2,6 +2,7 @@ import fetch, { FetchError } from 'node-fetch';
 import { RequestMethod } from './enums';
 import {
   IRequest,
+  IRequestConfiguration,
   IRequestRequired,
   IRequestRequiredGet,
   IResponse,
@@ -65,4 +66,17 @@ const destroy = async <T>(params: IRequestRequired) =>
     requestMethod: RequestMethod.Destroy,
   });
 
-export { get, destroy, patch, post, put };
+const createHttpClient = (
+  baseConfiguration: Required<IRequestConfiguration>
+) => {
+  return {
+    baseConfiguration,
+    destroy,
+    get,
+    patch,
+    post,
+    put,
+  };
+};
+
+export { createHttpClient, get, destroy, patch, post, put };

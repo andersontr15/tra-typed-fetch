@@ -8,6 +8,7 @@ export interface IResponse<T> {
 }
 
 export interface IRequest extends Partial<Request> {
+  baseUrl?: string;
   headers?: Request['headers'];
   payload?: object;
   requestMethod: RequestMethod;
@@ -17,3 +18,8 @@ export interface IRequest extends Partial<Request> {
 export type IRequestRequired = Pick<IRequest, 'url' | 'payload'>;
 
 export type IRequestRequiredGet = Pick<IRequestRequired, 'url'>;
+
+export interface IRequestConfiguration {
+  baseUrl?: string;
+  defaultHeaders?: Request['headers'];
+}

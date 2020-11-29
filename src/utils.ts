@@ -2,7 +2,7 @@ import { Headers } from 'node-fetch';
 import { RequestMethod, RequestParams } from './enums';
 import { IRequest } from './interfaces';
 
-const transformRequest = (request: IRequest): IRequest => {
+const transformRequest = (request: Partial<IRequest>): Partial<IRequest> => {
   const transformedRequest = { ...request };
   if (transformedRequest.requestMethod !== RequestMethod.Get) {
     Object.defineProperty(transformedRequest, RequestParams.Body, {
