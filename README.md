@@ -24,9 +24,9 @@ import { createHttpClient, get } from 'tra-typed-fetch';
 interface Product {
   name: string;
   id: number;
-}
+};
 
-type Products = Product[]
+type Products = Product[];
 
 const response = await get<Products>({ url: '/products' });
 
