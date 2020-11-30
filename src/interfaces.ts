@@ -28,13 +28,17 @@ export interface IHttpClientConfigOptions {
 }
 
 export type IHttpClientRequestType = <T>(
-  params: IRequestRequired | IRequestRequiredGet
+  params: IRequestRequired
+) => Promise<IResponse<T>>;
+
+export type IHttpClientRequestTypeGet = <T>(
+  params: IRequestRequiredGet
 ) => Promise<IResponse<T>>;
 
 export interface IHttpClientConfig {
   baseConfiguration: IRequestConfiguration;
   destroy: IHttpClientRequestType;
-  get: IHttpClientRequestType;
+  get: IHttpClientRequestTypeGet;
   patch: IHttpClientRequestType;
   post: IHttpClientRequestType;
 }
