@@ -1,6 +1,6 @@
 {
   "name": "tra-typed-fetch",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "sideEffects": false,
   "description": "A package that implements common http requests using fetch, allowing for typed responses with typescript",
   "main": "dist/index.js",
