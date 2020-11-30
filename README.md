@@ -24,19 +24,22 @@ import { createHttpClient, get } from 'tra-typed-fetch';
 interface Product {
   name: string;
   id: number;
-}
-const response = await get<Product>({ url: '/products' });
+};
+
+type Products = Product[];
+
+const response = await get<Products>({ url: '/products' });
 
 // Where data will be the typed value bound to the function in the Response
 const { data, headers, status } = response;
 
-// Optional exported method to preset headers and baseUrl
+// Optional exported method to preset headers and baseUrl on each request
 interface IRequestConfiguration {
   baseUrl?: string;
   defaultHeaders?: Request['headers'];
 }
 
-const client = createHttpClient({
+const { baseConfiguration, get, destroy, patch, post, put } = createHttpClient({
   baseUrl: 'localhost:3000/api/v1/',
   defaultHeaders: new Headers({ 'content-type': 'application/json' }),
 });
