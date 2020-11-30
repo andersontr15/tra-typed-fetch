@@ -126,6 +126,8 @@ const createHttpClient = (
 };
 
 // @ts-ignore
+globalThis.requestMap = requestMap;
+// @ts-ignore
 global.requestMap = requestMap;
 
-export { createHttpClient, get, destroy, patch, post, put };
+export { createHttpClient, get, destroy, patch, post, put, requestMap };
