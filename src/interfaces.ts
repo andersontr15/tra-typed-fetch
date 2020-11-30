@@ -28,7 +28,7 @@ export interface IHttpClientConfigOptions {
 }
 
 export type IHttpClientRequestType = <T>(
-  params: IRequestRequired
+  params: IRequestRequired | IRequestRequiredGet
 ) => Promise<IResponse<T>>;
 
 export interface IHttpClientConfig {
