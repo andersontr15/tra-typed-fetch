@@ -8,7 +8,7 @@ import {
 } from './interfaces';
 
 const transformRequest = (request: IRequest): IRequest => {
-  const transformedRequest = { ...request };
+  const transformedRequest = { ...request, method: request.requestMethod };
   if (transformedRequest.requestMethod !== RequestMethod.Get) {
     Object.defineProperty(transformedRequest, RequestParams.Body, {
       value: JSON.stringify(transformedRequest.payload),
