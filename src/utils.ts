@@ -1,6 +1,7 @@
 import { destroy, get, patch, post, put } from '.';
 import { RequestMethod, RequestParams } from './enums';
 import {
+  IHttpClientConfig,
   IRequest,
   IRequestConfiguration,
   IRequestRequired,
@@ -12,12 +13,16 @@ const transformRequest = (request: IRequest): IRequest => {
   if (transformedRequest.requestMethod !== RequestMethod.Get) {
     Object.defineProperty(transformedRequest, RequestParams.Body, {
       value: JSON.stringify(transformedRequest.payload),
-      writable: false,
+      writable: true,
     });
   }
-  buildBaseHeaders().forEach((value, name) =>
-    transformedRequest.headers?.append(value, name)
-  );
+  if (!transformedRequest.headers) {
+    transformedRequest.headers = buildBaseHeaders();
+  } else {
+    buildBaseHeaders().forEach((value, name) =>
+      transformedRequest.headers?.append(value, name)
+    );
+  }
   return transformedRequest;
 };
 
@@ -31,7 +36,7 @@ const requestMap = {
 
 const buildBaseHeaders = () =>
   new Headers({
-    'content-type': 'application/json',
+    'Content-Type': 'application/json',
   });
 
 const mergeConfigs = (
@@ -60,7 +65,7 @@ const mergeConfigs = (
   return config;
 };
 
-const httpClientCache: Map<string, object> = new Map();
+const httpClientCache: Map<string, IHttpClientConfig> = new Map();
 
 export {
   buildBaseHeaders,

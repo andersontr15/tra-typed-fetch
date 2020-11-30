@@ -26,3 +26,15 @@ export interface IRequestConfiguration {
 export interface IHttpClientConfigOptions {
   useCachedConfig: boolean;
 }
+
+export type IHttpClientRequestType = <T>(
+  params: IRequestRequired
+) => Promise<IResponse<T>>;
+
+export interface IHttpClientConfig {
+  baseConfiguration: IRequestConfiguration;
+  destroy: IHttpClientRequestType;
+  get: IHttpClientRequestType;
+  patch: IHttpClientRequestType;
+  post: IHttpClientRequestType;
+}

@@ -1,7 +1,9 @@
 import { __assign } from 'tslib';
 import { Headers } from 'node-fetch';
 import { RequestMethod, RequestParams } from './enums';
+console.log('hit');
 var transformRequest = function (request) {
+  console.warn('in req!!!!!');
   var transformedRequest = __assign({}, request);
   if (transformedRequest.requestMethod !== RequestMethod.Get) {
     Object.defineProperty(transformedRequest, RequestParams.Body, {
