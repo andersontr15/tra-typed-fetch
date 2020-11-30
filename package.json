@@ -21,7 +21,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "node-fetch": "2.6.1",
+    "isomorphic-fetch": "3.0.0",
     "tslib": "2.0.3"
   },
   "husky": {
@@ -36,7 +36,6 @@
     "@babel/register": "7.12.1",
     "@types/isomorphic-fetch": "0.0.34",
     "husky": "4.3.0",
-    "isomorphic-fetch": "3.0.0",
     "prettier": "2.1.2",
     "pretty-quick": "3.1.0",
     "typescript": "4.1.2"
@@ -44,7 +43,6 @@
   "keywords": [
     "fetcher",
     "isomorphic-fetch",
-    "node-fetch",
     "typed-fetch",
     "typescript-fetch"
   ]
