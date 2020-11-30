@@ -90,13 +90,16 @@ const createHttpClient = (
     switch (requestMethod) {
       case RequestMethod.Get:
         return async <T>(params: IRequestRequiredGet) =>
-          requestMap[requestMethod]<T>(mergeConfigs(baseConfiguration, params));
+          get<T>(mergeConfigs(baseConfiguration, params));
       case RequestMethod.Destroy:
       case RequestMethod.Patch:
       case RequestMethod.Post:
       case RequestMethod.Put:
         return async <T>(params: IRequestRequired) =>
-          requestMap[requestMethod]<T>(mergeConfigs(baseConfiguration, params));
+          request<T>({
+            ...mergeConfigs(baseConfiguration, params),
+            requestMethod,
+          });
     }
   };
 
