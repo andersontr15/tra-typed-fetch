@@ -125,9 +125,4 @@ const createHttpClient = (
   return httpClientCache.get(cachedConfigName) as IHttpClientConfig;
 };
 
-// @ts-ignore
-globalThis.requestMap = requestMap;
-// @ts-ignore
-global.requestMap = requestMap;
-
 export { createHttpClient, get, destroy, patch, post, put, requestMap };
