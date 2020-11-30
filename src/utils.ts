@@ -48,8 +48,8 @@ const mergeConfigs = (
     params.headers.forEach((value, name) => headers.append(name, value));
   }
   if (baseConfiguration.defaultHeaders) {
-    baseConfiguration.defaultHeaders.forEach((value, name) =>
-      headers.append(name, value)
+    baseConfiguration.defaultHeaders.forEach((value, key) =>
+      headers.append(key, value)
     );
   }
   let config = {
