@@ -2,6 +2,7 @@ import fetch, { FetchError } from 'node-fetch';
 import { HTTP_CLIENT_NAME } from './constants';
 import { RequestMethod } from './enums';
 import {
+  IHttpClientConfigOptions,
   IRequest,
   IRequestConfiguration,
   IRequestRequired,
@@ -73,9 +74,13 @@ const destroy = async <T>(params: IRequestRequired) =>
   });
 
 const createHttpClient = (
-  baseConfiguration: Required<IRequestConfiguration>
+  baseConfiguration: Required<IRequestConfiguration>,
+  options?: IHttpClientConfigOptions
 ) => {
-  if (httpClientCache.has(HTTP_CLIENT_NAME)) {
+  if (
+    !options?.useCachedConfig === false &&
+    httpClientCache.has(HTTP_CLIENT_NAME)
+  ) {
     console.info('Http client already exists. Retrieving from cache.');
     return httpClientCache.get(HTTP_CLIENT_NAME);
   }
@@ -104,9 +109,17 @@ const createHttpClient = (
     put: modifiedRequestWithBaseConfiguration(RequestMethod.Put),
   };
 
-  httpClientCache.set(HTTP_CLIENT_NAME, config);
+  let cachedConfigName = HTTP_CLIENT_NAME;
 
-  return httpClientCache.get(HTTP_CLIENT_NAME);
+  if (options?.useCachedConfig === false) {
+    cachedConfigName = cachedConfigName.concat(
+      (httpClientCache.size + 1).toString()
+    );
+  }
+
+  httpClientCache.set(cachedConfigName, config);
+
+  return httpClientCache.get(cachedConfigName);
 };
 
 export { createHttpClient, get, destroy, patch, post, put };

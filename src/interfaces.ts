@@ -23,3 +23,7 @@ export interface IRequestConfiguration {
   baseUrl?: string;
   defaultHeaders?: Request['headers'];
 }
+
+export interface IHttpClientConfigOptions {
+  useCachedConfig: boolean;
+}
