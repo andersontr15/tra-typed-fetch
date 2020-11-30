@@ -45,7 +45,7 @@ const mergeConfigs = (
 ) => {
   const headers = new Headers();
   if (params.headers) {
-    params.headers.forEach((value, name) => headers.append(name, value));
+    params.headers.forEach((value, key) => headers.append(key, value));
   }
   if (baseConfiguration.defaultHeaders) {
     baseConfiguration.defaultHeaders.forEach((value, key) =>
