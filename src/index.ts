@@ -1,4 +1,5 @@
-import fetch, { FetchError, Headers } from 'node-fetch';
+import fetch, { FetchError } from 'node-fetch';
+import { HTTP_CLIENT_NAME } from './constants';
 import { RequestMethod } from './enums';
 import {
   IRequest,
@@ -7,7 +8,12 @@ import {
   IRequestRequiredGet,
   IResponse,
 } from './interfaces';
-import { mergeConfigs, requestMap, transformRequest } from './utils';
+import {
+  httpClientCache,
+  mergeConfigs,
+  requestMap,
+  transformRequest,
+} from './utils';
 
 const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
   const request = transformRequest(params);
@@ -69,6 +75,10 @@ const destroy = async <T>(params: IRequestRequired) =>
 const createHttpClient = (
   baseConfiguration: Required<IRequestConfiguration>
 ) => {
+  if (httpClientCache.has(HTTP_CLIENT_NAME)) {
+    console.info('Http client already exists. Retrieving from cache.');
+    return httpClientCache.get(HTTP_CLIENT_NAME);
+  }
   const modifiedRequestWithBaseConfiguration = (
     requestMethod: RequestMethod
   ) => {
@@ -85,7 +95,7 @@ const createHttpClient = (
     }
   };
 
-  return {
+  const config = {
     baseConfiguration,
     destroy: modifiedRequestWithBaseConfiguration(RequestMethod.Destroy),
     get: modifiedRequestWithBaseConfiguration(RequestMethod.Get),
@@ -93,6 +103,10 @@ const createHttpClient = (
     post: modifiedRequestWithBaseConfiguration(RequestMethod.Post),
     put: modifiedRequestWithBaseConfiguration(RequestMethod.Put),
   };
+
+  httpClientCache.set(HTTP_CLIENT_NAME, config);
+
+  return httpClientCache.get(HTTP_CLIENT_NAME);
 };
 
 export { createHttpClient, get, destroy, patch, post, put };

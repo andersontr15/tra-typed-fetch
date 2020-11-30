@@ -1,5 +1,5 @@
 import { Headers } from 'node-fetch';
-import { get, patch, post, put, destroy } from '.';
+import { destroy, get, patch, post, put } from '.';
 import { RequestMethod, RequestParams } from './enums';
 import {
   IRequest,
@@ -61,4 +61,12 @@ const mergeConfigs = (
   return config;
 };
 
-export { buildBaseHeaders, mergeConfigs, requestMap, transformRequest };
+const httpClientCache: Map<string, object> = new Map();
+
+export {
+  buildBaseHeaders,
+  httpClientCache,
+  mergeConfigs,
+  requestMap,
+  transformRequest,
+};
