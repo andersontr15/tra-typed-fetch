@@ -27,18 +27,11 @@ export interface IHttpClientConfigOptions {
   useCachedConfig: boolean;
 }
 
-export type IHttpClientRequestType = <T>(
-  params: IRequestRequired
-) => Promise<IResponse<T>>;
-
-export type IHttpClientRequestTypeGet = <T>(
-  params: IRequestRequiredGet
-) => Promise<IResponse<T>>;
-
 export interface IHttpClientConfig {
   baseConfiguration: IRequestConfiguration;
-  destroy: IHttpClientRequestType;
-  get: IHttpClientRequestTypeGet;
-  patch: IHttpClientRequestType;
-  post: IHttpClientRequestType;
+  destroy: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+  get: <T>(params: IRequestRequiredGet) => Promise<IResponse<T>>;
+  patch: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+  post: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
+  put: <T>(params: IRequestRequired) => Promise<IResponse<T>>;
 }

@@ -100,7 +100,7 @@ const createHttpClient = (
     }
   };
 
-  const config = {
+  const config: IHttpClientConfig = {
     baseConfiguration,
     destroy: modifiedRequestWithBaseConfiguration(RequestMethod.Destroy),
     get: modifiedRequestWithBaseConfiguration(RequestMethod.Get),
