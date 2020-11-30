@@ -19,8 +19,8 @@ const transformRequest = (request: IRequest): IRequest => {
   if (!transformedRequest.headers) {
     transformedRequest.headers = buildBaseHeaders();
   } else {
-    buildBaseHeaders().forEach((value, name) =>
-      transformedRequest.headers?.append(value, name)
+    buildBaseHeaders().forEach((value, key) =>
+      transformedRequest.headers?.append(key, value)
     );
   }
   return transformedRequest;
