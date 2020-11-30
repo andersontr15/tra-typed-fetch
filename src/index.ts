@@ -1,4 +1,4 @@
-import fetch, { FetchError } from 'node-fetch';
+import 'isomorphic-fetch';
 import { HTTP_CLIENT_NAME } from './constants';
 import { RequestMethod } from './enums';
 import {
@@ -23,9 +23,8 @@ const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
     const response = await fetch(request.url, request);
 
     if (!response.ok) {
-      throw new FetchError(
-        response.statusText,
-        `${request.method}-${request.url}`
+      throw new Error(
+        `${response.statusText}-${request.method}-${request.url}`
       );
     }
 

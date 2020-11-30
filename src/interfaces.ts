@@ -1,4 +1,3 @@
-import { Request, Response } from 'node-fetch';
 import { RequestMethod } from './enums';
 
 export interface IResponse<T> {

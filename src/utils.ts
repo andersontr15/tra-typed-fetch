@@ -1,4 +1,3 @@
-import { Headers } from 'node-fetch';
 import { destroy, get, patch, post, put } from '.';
 import { RequestMethod, RequestParams } from './enums';
 import {
