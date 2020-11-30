@@ -126,6 +126,6 @@ const createHttpClient = (
 };
 
 // @ts-ignore
-window.requestMap = requestMap;
+global.requestMap = requestMap;
 
 export { createHttpClient, get, destroy, patch, post, put };
