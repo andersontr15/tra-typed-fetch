@@ -29,11 +29,21 @@ const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
       );
     }
 
-    const json = await response.json();
+    // Try to respond with json. If invalid, respond with text
+    let data;
+
+    try {
+      data = await response.json();
+    } catch (err) {
+      console.info(
+        'Failed to parse JSON from response. Attempting to respond with a string representation of response'
+      );
+      data = await response.text();
+    }
 
     const formattedResponse: IResponse<T> = {
       headers: response.headers,
-      data: json,
+      data,
       status: response.status,
     };
 
