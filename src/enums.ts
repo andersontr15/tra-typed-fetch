@@ -9,3 +9,7 @@ export enum RequestMethod {
 export enum RequestParams {
   Body = 'body',
 }
+
+export const enum StatusCodes {
+  NoContent = 204,
+}

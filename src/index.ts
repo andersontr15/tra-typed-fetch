@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 import { HTTP_CLIENT_NAME } from './constants';
-import { RequestMethod } from './enums';
+import { RequestMethod, StatusCodes } from './enums';
 import {
   IHttpClientConfig,
   IHttpClientConfigOptions,
@@ -29,16 +29,12 @@ const request = async <T>(params: IRequest): Promise<IResponse<T>> => {
       );
     }
 
-    // Try to respond with json. If invalid, respond with text
     let data;
 
-    try {
+    if (response.status === StatusCodes.NoContent) {
+      data = response.statusText;
+    } else {
       data = await response.json();
-    } catch (err) {
-      console.info(
-        'Failed to parse JSON from response. Attempting to respond with a string representation of response'
-      );
-      data = await response.text();
     }
 
     const formattedResponse: IResponse<T> = {
