@@ -12,19 +12,19 @@ A package that implements common http requests using fetch, allowing for typed r
 
 ### Installing <a name = "installing"></a>
 
-`npm install tra-typed-fetch`
+`npm install @tra/typed-fetch`
 
-`yarn add tra-typed-fetch`
+`yarn add @tra/typed-fetch`
 
 ### Usage <a name = "usage"></a>
 
 ```ts
-import { createHttpClient, get } from 'tra-typed-fetch';
+import { createHttpClient, get } from '@tra/typed-fetch';
 
 interface Product {
   name: string;
   id: number;
-};
+}
 
 type Products = Product[];
 
